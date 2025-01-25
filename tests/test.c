@@ -6,11 +6,31 @@
 int main() {
   printf("LINKED LIST TESTS:\n");
 
-  lsq_t stackTest = {.head = 0, .length = 0, .current = 0, .last = 0};
-
   int a = 1;
   int b = 2;
   int c = 3;
+
+  // Heap Memory
+  printf("HEAP LIST TESTS\n");
+  lsq_t *listTest = lsq_init();
+  lsq_node_t *ptrNodeA = lsq_node_init();
+  lsq_node_t *ptrNodeB = lsq_node_init();
+  lsq_node_t *ptrNodeC = lsq_node_init();
+  ptrNodeA->value = &a;
+  ptrNodeB->value = &b;
+  ptrNodeC->value = &c;
+
+  lsq_append(listTest, ptrNodeA);
+  lsq_append(listTest, ptrNodeB);
+  lsq_prepend(listTest, ptrNodeC);
+
+  lsq_node_t *listItem = lsq_pop(listTest);
+  while (listItem) {
+    printf("%d\n", *(int *)listItem->value);
+    listItem = lsq_pop(listTest);
+  }
+
+  lsq_t stackTest = {.head = 0, .length = 0, .current = 0, .last = 0};
 
   lsq_node_t nodeOne = {.value = &a, .next = 0, .prev = 0};
   lsq_node_t nodeTwo = {.value = &b, .next = 0, .prev = 0};
@@ -34,7 +54,7 @@ int main() {
   }
 
   for (int i = 0; i < stackTest.length; i++) {
-    printf("%d\n", *(int *)lsq_stack_get_n(&stackTest, i)->value);
+    printf("%d\n", *(int *)lsq_get_n(&stackTest, i)->value);
   }
 
   lsq_node_t *item = lsq_pop(&stackTest);
@@ -57,7 +77,7 @@ int main() {
   lsq_enque(&stackTest, &nodeThree);
 
   for (int i = 0; i < stackTest.length; i++) {
-    printf("%d\n", *(int *)lsq_queue_get_n(&stackTest, i)->value);
+    printf("%d\n", *(int *)lsq_get_n(&stackTest, i)->value);
   }
 
   item = 0;
@@ -66,5 +86,15 @@ int main() {
     printf("%d\n", *(int *)(item->value));
     item = lsq_deque(&stackTest);
   }
+
+  // nth
+  printf("Nth Tests\n");
+  lsq_t *nremoval = lsq_init();
+  lsq_append(nremoval, &nodeOne);
+  lsq_append(nremoval, &nodeThree);
+  lsq_append(nremoval, &nodeTwo);
+
+  printf("%d\n", *(int *)lsq_get_n(nremoval, 1));
+
   return 0;
 }
