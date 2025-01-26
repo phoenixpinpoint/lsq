@@ -1,0 +1,12 @@
+{
+  "name": "lsq",
+  "version": "0.1.0",
+  "repo": "phoenixpinpoint/lsq",
+  "description": "Basic List Stack Queue implementation using a doubly linked list",
+  "keywords": ["c", "data-structures", "C99"],
+  "license": "GPLv3",
+  "src": [
+    "lsq.c",
+    "lsq.h"
+  ]
+}
