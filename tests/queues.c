@@ -6,8 +6,9 @@
 #include "../lsq.c"
 #endif
 
-int main() {
-  printf("Queue Tetsts\n");
+void run_queue_tests() {
+  printf("Queue Tests\n");
+
   lsq_t queue = {.current = 0, .head = 0, .last = 0, .length = 0};
 
   int a = 1;
@@ -22,14 +23,15 @@ int main() {
   lsq_node_t four = {.value = &d, .next = 0, .prev = 0};
   lsq_node_t zero = {.value = &z, .next = 0, .prev = 0};
 
-  lsq_push(&queue, &one);   // 1
-  lsq_push(&queue, &two);   // 2,1
-  lsq_push(&queue, &three); // 3,2,1
-  lsq_push(&queue, &four);  // 4,3,2,1
-  lsq_push(&queue, &zero);  // 0,4,3,2,1
-  lsq_node_t *zPtr = lsq_pop(&queue);
+  lsq_enque(&queue, &one);   // 1
+  lsq_enque(&queue, &two);   // 1,2
+  lsq_enque(&queue, &three); // 1,2,3
+  lsq_enque(&queue, &four);  // 1,2,3,4
+  lsq_enque(&queue, &zero);  // 1,2,3,4,0
 
-  printf("Popped %d\n", *(int *)zPtr->value);
+  lsq_node_t *aPtr = lsq_deque(&queue);
+
+  printf("Deque: %d\n", *(int *)aPtr->value);
 
   for (int i = 0; i < queue.length; i++) {
     printf("%d", *(int *)lsq_get_n(&queue, i)->value);
@@ -39,5 +41,9 @@ int main() {
   }
   printf("\n");
 
-  return 0;
+  return;
 }
+
+#ifdef STANDALONE
+int main() { run_queue_tests(); }
+#endif

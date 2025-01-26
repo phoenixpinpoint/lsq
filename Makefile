@@ -7,7 +7,11 @@ list:
 queue:
 	gcc -Wall -Werror -DSTANDALONE tests/queues.c -o tests/queues; tests/queues;
 
+stack:
+	gcc -Wall -Werror -DSTANDALONE tests/stacks.c -o tests/stacks; tests/stacks;
+
 clean: 
 	rm -rf ./tests/test
 	rm -rf ./tests/lists
 	rm -rf ./tests/queues
+	rm -rf ./tests/stacks

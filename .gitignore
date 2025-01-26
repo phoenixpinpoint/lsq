@@ -1,2 +1,4 @@
 tests/test
 tests/lists
+tests/queues
+tests/stacks
