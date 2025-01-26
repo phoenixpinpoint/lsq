@@ -2,3 +2,4 @@ tests/test
 tests/lists
 tests/queues
 tests/stacks
+examples/reversal

@@ -10,8 +10,12 @@ queue:
 stack:
 	gcc -Wall -Werror -DSTANDALONE tests/stacks.c -o tests/stacks; tests/stacks;
 
+reverse: 
+	gcc -Wall -Werror examples/reversal.c -o examples/reversal; examples/reversal;
+
 clean: 
 	rm -rf ./tests/test
 	rm -rf ./tests/lists
 	rm -rf ./tests/queues
 	rm -rf ./tests/stacks
+	rm -rf ./examples/reversal
